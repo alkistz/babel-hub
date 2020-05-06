@@ -1,11 +1,3 @@
-#make user creation dynamic later
-
-=beginus1 = moyfas
-us2 = allos
-us3 = roger
-us4 = paokdirector
-=end
-
 users = User.create([
   {
     username: 'moyfas',
@@ -191,4 +183,34 @@ and I am your stepmother.",
   },
 
 
+])
+
+poems = Poem.create([
+  {
+    title: 'Roser er røde',
+    creator_name: 'Roger',
+    poem_original: 'Roser er røde, fioler er blå. PAOK er gode og du er likeså',
+    poem_translated: 'Roses are red, violets are blue. PAOK are good, and so are you, too',
+    link: 'www.google.com',
+    user_id: 2
+  },
+  {
+    title: 'PAOK in my heart',
+    creator_name: 'Alkis',
+    poem_original: 'αι στην ποδιά της το βαλε,
+    στο σπίτι της πηγαίνει
+    το έβαλε στην κούνια του,
+    το τραγουδά και λέει',
+    poem_translated: 'PAOK PAOK PAOK IS THE TEAM FOR ME THE ONLY THING I LOVE MORE IS MY MOTHERS MOUSSAKA',
+    link: 'www.google.com',
+    user_id: 1
+  },
+  {
+    title: 'PAOK in my soul',
+    creator_name: 'Alexander the great',
+    poem_original: 'I used to care for money, now I only care for PAOK',
+    poem_translated: 'PAOK PAOK PAOK IS THE TEAM FOR ME THE ONLY THING I LOVE MORE IS CRUSHING OTTOMANS',
+    link: 'www.google.com',
+    user_id: 1
+  }
 ])
