@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_152559) do
+ActiveRecord::Schema.define(version: 2020_05_06_120753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "poems", force: :cascade do |t|
+    t.string "title"
+    t.string "creator_name"
+    t.text "poem_original"
+    t.text "poem_translated"
+    t.string "link"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_poems_on_user_id"
+  end
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
@@ -22,9 +34,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_152559) do
     t.text "lyrics_original"
     t.text "lyrics_translated"
     t.string "link"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
@@ -41,4 +53,6 @@ ActiveRecord::Schema.define(version: 2020_05_04_152559) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "poems", "users"
+  add_foreign_key "songs", "users"
 end
