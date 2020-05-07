@@ -1,23 +1,27 @@
   class PoemsController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :poem_find, only: [:show, :destroy, :update, :edit]
 
   def index
-    @poems = policy_scope(Poem)
+    @poems = Poem.all
   end
 
   def show
+
   end
 
   def create
     @poem = Poem.new(poem_params)
-    @poem.link = return_key(@poem.link)
-
-    @poem.save
-    redirect_to poem_path(@poem)
+    @poem.user = current_user
+    if @poem.save
+    redirect_to poems_path(@poem)
+    else
+      render 'new'
+    end
   end
 
   def new
-    @poem = poem.new
+    @poem = Poem.new
   end
 
   def edit
@@ -37,14 +41,14 @@
   end
 
   def dashboard
-    @user_poems = poem.where(user_id: current_user.id)
+    @user_poems = Poem.where(user_id: current_user.id)
   end
 
 
   private
 
   def poem_find
-    @poem = poem.find(params[:id])
+    @poem = Poem.find(params[:id])
   end
 
   def poem_params

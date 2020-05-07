@@ -1,0 +1,12 @@
+<%= simple_form_for(@poem) do |f| %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.input :title %>
+  <%= f.input :creator_name%>
+  <%= f.input :poem_original %>
+  <%= f.input :poem_translated %>
+  <%= f.input :link %>
+
+  <%= f.submit 'Submit poem' %>
+
+<% end %>

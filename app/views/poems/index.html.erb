@@ -1,0 +1,26 @@
+<div class="bg-image">
+  <div class="container container-show">
+
+    <h1> List of Poems </h1>
+
+    <h3> Select a poem to see the original and translated words </h3>
+
+  <div class="cards">
+    <% @poems.each do |poem| %>
+    <div class="card-poem">
+      <div class="card-poem-infos">
+        <h2> <%= poem.title  %></h2>
+        <h4> Creator name: </h4>
+        <p> <%= poem.creator_name  %></p>
+      </div>
+
+    <h4> Original lyrics: </h4>
+     <p> <%= poem.poem_original %></p>
+
+     <h4> Translated lyrics: </h4>
+     <p> <%= poem.poem_translated  %></p>
+    <% end %>
+
+    </div>
+  </div>
+</div>
