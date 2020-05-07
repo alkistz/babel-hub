@@ -1,0 +1,19 @@
+<div class="container container-show">
+  <h1> My Poems </h1>
+
+
+  <div class="cards">
+
+    <% @user_poems.each do |poem| %>
+      <div class="card-poem">
+        <% link_to poem_path(poem), class: "card-link" do %>
+        <div class="card-poem-infos">
+          <h2>  <%= poem.title  %> </h2>
+          <p> <%= poem.creator_name %> </p>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
