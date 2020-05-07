@@ -1,5 +1,4 @@
-  class poemsController < ApplicationController
-  skip_before_action :authenticate_user!
+  class PoemsController < ApplicationController
   before_action :poem_find, only: [:show, :destroy, :update, :edit]
 
   def index
@@ -12,7 +11,6 @@
   def create
     @poem = Poem.new(poem_params)
     @poem.link = return_key(@poem.link)
-    authorize @poem
 
     @poem.save
     redirect_to poem_path(@poem)
@@ -20,7 +18,6 @@
 
   def new
     @poem = poem.new
-    authorize @poem
   end
 
   def edit
@@ -41,7 +38,6 @@
 
   def dashboard
     @user_poems = poem.where(user_id: current_user.id)
-    authorize @user_poems
   end
 
 
@@ -49,15 +45,10 @@
 
   def poem_find
     @poem = poem.find(params[:id])
-    authorize @poem
   end
 
   def poem_params
     params.require(:poem).permit(:title, :creator_name, :poem_original, :poem_translated, :link, :user_id)
   end
 
-  def return_key(url)
-    key = url.match(/\watch\?v=(.*)/)[1]
-    return "https://www.youtube.com/embed/#{key[0..10]}"
-  end
 end
