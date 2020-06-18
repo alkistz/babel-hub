@@ -44,7 +44,7 @@
   private
 
   def poem_find
-    @poem = poem.find(params[:id])
+    @poem = Poem.find(params[:id])
   end
 
   def poem_params
